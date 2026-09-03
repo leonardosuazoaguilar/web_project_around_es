@@ -71,3 +71,66 @@ closeEditModalButton.addEventListener("click", () =>
   closeModal(editProfileModal),
 );
 formElement.addEventListener("submit", handleProfileFormSubmit);
+
+const cardsContainer = document.querySelector(".cards__list");
+const cardTemplate = document.querySelector("#card-template").content;
+
+const addCardModal = document.querySelector("#add-card-popup");
+const addCardForm = addCardModal.querySelector(".popup__form");
+const cardNameInput = addCardModal.querySelector(
+  ".popup__input_type_card-name",
+);
+const cardLinkInput = addCardModal.querySelector(".popup__input_type_url");
+const imageModal = document.querySelector("#image-popup");
+const modalImage = imageModal.querySelector(".popup__image");
+const modalCaption = imageModal.querySelector(".popup__caption");
+
+function getCardElement(
+  name = "Sin título",
+  link = "./images/placeholder.jpg",
+) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
+  cardImage.src = link;
+  cardImage.alt = name;
+  cardTitle.textContent = name;
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  cardImage.addEventListener("click", () => {
+    modalImage.src = link;
+    modalImage.alt = name;
+    modalCaption.textContent = name;
+    openModal(imageModal);
+  });
+
+  return cardElement;
+}
+
+function renderCard(name, link, container) {
+  const newCard = getCardElement(name, link);
+  container.prepend(newCard);
+}
+
+initialCards.forEach((cardData) => {
+  renderCard(cardData.name, cardData.link, cardsContainer);
+});
+
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+  renderCard(cardNameInput.value, cardLinkInput.value, cardsContainer);
+  addCardForm.reset();
+  closeModal(addCardModal);
+}
+
+addCardForm.addEventListener("submit", handleCardFormSubmit);
