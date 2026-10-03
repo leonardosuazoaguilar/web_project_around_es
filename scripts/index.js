@@ -123,7 +123,7 @@ function createCard(name, link) {
   cardTitle.textContent = name;
 
   likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
+    likeButton.classList.toggle("card__like-button_is-active");
   });
 
   deleteButton.addEventListener("click", () => {
