@@ -34,7 +34,7 @@
   cursor: default;
 }
 
-.button_interactive:hover,
+.button-interactive:hover,
 .popup__button:not(.popup__button_disabled):hover {
   opacity: 0.8;
   cursor: pointer;
