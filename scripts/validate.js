@@ -40,8 +40,7 @@ const toggleButtonState = (inputList, buttonElement, config) => {
     buttonElement.disabled = false;
   }
 };
-
-const setEventListeners = (formElement, config) => {
+export const setEventListeners = (formElement, config) => {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector),
   );
@@ -58,6 +57,7 @@ const setEventListeners = (formElement, config) => {
   });
 };
 
+/*
 export const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
@@ -67,7 +67,7 @@ export const enableValidation = (config) => {
     setEventListeners(formElement, config);
   });
 };
-
+*/
 export const resetValidation = (formElement, config) => {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector),

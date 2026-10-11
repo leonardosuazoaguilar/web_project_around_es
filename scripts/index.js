@@ -1,4 +1,4 @@
-import { enableValidation, resetValidation } from "./validate.js";
+import { setEventListeners, resetValidation } from "./validate.js";
 
 const initialCards = [
   {
@@ -166,4 +166,5 @@ profileAddButton.addEventListener("click", () => {
 });
 addCardForm.addEventListener("submit", handleCardFormSubmit);
 
-enableValidation(validationConfig);
+setEventListeners(editProfileForm, validationConfig);
+setEventListeners(addCardForm, validationConfig);
